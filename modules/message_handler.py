@@ -1,9 +1,9 @@
 import random
 import re
 import vk_api
-import module_send
-import module_porcess
-import module_player_util
+from modules import module_send
+from modules import module_porcess
+from modules import module_player_util
 
 def handle_message(text, chat_id, vk_session):
     if text.lower() == "ква":
