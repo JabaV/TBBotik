@@ -14,7 +14,7 @@ def handle_message(text, chat_id, vk_session):
                 'Ингры/Ингредиенты:\n' \
                 '[обычные/редкие/эпические/мифические/легендарные/' \
                 'эпик/мифик/лег]\n\n'
-                'Ресы/Ресурсы (бой/босс/финал)')
+                'Ресы/Ресурсы (бой/босс/финал)', chat_id, vk_session)
 
     elif text.lower().startswith('кубрий'):
         if text[7:].isdigit():
