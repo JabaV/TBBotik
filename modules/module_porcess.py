@@ -70,6 +70,20 @@ def resource_string_format(res):
 
 def generate_ingredients(rarity):
     ingredients = ''
+    match rarity:
+        case 'обычные':
+            ingredients = generate_usual()
+        case 'редкие':
+            ingredients = generate_rare()
+        case 'эпик':
+            ingredients = generate_epic()
+        case 'мифик':
+            ingredients = generate_mythic()
+        case 'миф':
+            ingredients = generate_mythic()
+        case 'лег':
+            ingredients = generate_legendary()
+    return ingredients
 
 
 def generate_usual():
