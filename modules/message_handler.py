@@ -1,6 +1,5 @@
 import random
 import re
-import vk_api
 from modules import module_send
 from modules import module_porcess
 from modules import module_player_util
