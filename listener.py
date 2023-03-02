@@ -1,7 +1,5 @@
 from webserver import keep_alive
-import random
 import os
-import re
 import vk_api
 from modules import message_handler
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
