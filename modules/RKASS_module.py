@@ -18,21 +18,21 @@ def menu(sender, vk_session):
     })
 
 
-def inspection_user_send(self, xt, uid):
+def inspection_user_send(xt, uid):
     try:
-        self.conn = sq.connect("characters.db")
-        self.cursor = self.conn.cursor()
+        conn = sq.connect("modules/characters.db")
+        cursor = conn.cursor()
 
-        self.execute("INSERT OR IGNORE INTO 'characters' ('character', 'status', 'owner_id') VALUES (?, ?, ?)",
+        cursor.execute("INSERT OR IGNORE INTO 'characters' ('character', 'status', 'owner_id') VALUES (?, ?, ?)",
                      (str(xt), str('Ожидание проверки'), uid))
-        penis = self.cursor.execute("SELECT * FROM 'characters'")
+        penis = cursor.execute("SELECT * FROM 'characters'")
         print(penis.fetchall())
 
-        self.conn.commit()
+        conn.commit()
 
     except sq.Error as error:
         print('Error', error)
 
     finally:
-        if self.conn:
-            self.conn.close()
+        if conn:
+            conn.close()
