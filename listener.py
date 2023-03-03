@@ -22,7 +22,15 @@ for event in longpoll.listen():
             else:
                 message_handler.handle_message(msg, chat_id, vk_session)
         if event.from_user:
+            msg = event.object.message['text']
             sender = event.object.message['peer_id']
             RKASS_module.menu(sender, vk_session)
+            if msg == 'Проверить':
+                if (event.type == VkBotEventType.MESSAGE_NEW) & event.from_user:
+                    xt = event.object.message['text']
+                    ud = event.object.message['user_id']
+                    RKASS_module.inspection_user_send(xt, ud)
+
+
 
     # elif (event.type == VkBotEventType.WALL_POST_NEW) & (event.obj['post_type'] == 'post'):
