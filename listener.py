@@ -28,7 +28,7 @@ for event in longpoll.listen():
             if msg == 'Проверить':
                 if (event.type == VkBotEventType.MESSAGE_NEW) & event.from_user:
                     xt = event.object.message['text']
-                    ud = event.object.message['user_id']
+                    ud = event.object.message['from_id']
                     RKASS_module.inspection_user_send(xt, ud)
 
 
