@@ -32,4 +32,3 @@ def kva(c, chid, vk_session):
             'random_id': get_random_id(),
             'attachment': attch
         })
-
