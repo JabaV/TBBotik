@@ -9,6 +9,7 @@ kbd.add_button('Эймил Джемилов2', color=VkKeyboardColor.POSITIVE)
 def menu(sender, vk_session):
     vk_session.method('messages.send', {
         'peer_id': sender,
+        'message': '',
         'random_id': get_random_id(),
         'keyboard': kbd.get_keyboard()
     })
