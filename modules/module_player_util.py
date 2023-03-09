@@ -1,7 +1,3 @@
-import random
-import re
-
-
 def count(msg, template):
     if template == 'шизов':
         return 'Ноль \nЦелковый\nПолушка\nЧетвертушка\nОсьмушка\nПодувичок\nМедичок\nСеребрячок\nЗолотничок' \
