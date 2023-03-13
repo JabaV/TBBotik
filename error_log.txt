@@ -2,3 +2,5 @@
 [1678699227.451773]string indices must be integers
 [2023-03-13]string indices must be integers
 [2023-03-13]string indices must be integers
+[2023-03-13]local variable 'resources' referenced before assignment
+[2023-03-13]local variable 'resources' referenced before assignment
