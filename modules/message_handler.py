@@ -25,15 +25,15 @@ def handle_message(text, chat_id, vk_session):
         spacebar = text.find(' ')
         if spacebar > -1:
             resources = module_porcess.generate_resources(text[spacebar + 1:].lower())
-        resources = module_porcess.resource_string_format(resources)
-        module_send.send(resources, chat_id, vk_session)
+            resources = module_porcess.resource_string_format(resources)
+            module_send.send(resources, chat_id, vk_session)
 
     elif text.lower().startswith('ингры') or text.lower().startswith('ингредиенты'):
         spacebar = text.find(' ')
         if spacebar > -1:
             ingredients = module_porcess.generate_ingredients(text[spacebar + 1:].lower())
-        ingredients = module_porcess.resource_string_format(ingredients)
-        module_send.send(ingredients, chat_id, vk_session)
+            ingredients = module_porcess.resource_string_format(ingredients)
+            module_send.send(ingredients, chat_id, vk_session)
 
         # ДАЛЬШЕ ИДЁТ ОЧЕНЬ СТРАШНО
     elif text.lower().startswith("ранд"):
