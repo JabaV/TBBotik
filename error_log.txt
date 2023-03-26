@@ -4,3 +4,24 @@
 [2023-03-13]string indices must be integers
 [2023-03-13]local variable 'resources' referenced before assignment
 [2023-03-13]local variable 'resources' referenced before assignment
+[2023-03-13]string indices must be integers
+[2023-03-13]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-14]string indices must be integers
+[2023-03-14]string indices must be integers
+[2023-03-14]empty range for randrange() (100, 5, -95)
+[2023-03-14]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-15]('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[2023-03-15]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-16]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-17]('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[2023-03-17]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-18]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-19]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-20]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-21]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-22]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-23]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-24]string indices must be integers
+[2023-03-24]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-25]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
+[2023-03-26]string indices must be integers
