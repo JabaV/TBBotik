@@ -101,7 +101,9 @@ def generate_rare():
     res = {
         'Огнецвет х': random.randint(1, 3),
         'Сера х': random.randint(1, 4),
-        'Серный концентрат х': random.randint(0, 4)
+        'Серный концентрат х': random.randint(0, 4),
+        'Волос с подмыхи гиганта х': random.randint(-2, 3)
+      
     }
     return res
 

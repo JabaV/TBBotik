@@ -7,7 +7,7 @@ from modules import module_player_util
 
 def handle_message(text, chat_id, vk_session):
     if text.lower() == "ква":
-        module_send.kva(random.randint(1, 100), chat_id, vk_session)
+      module_send.kva(random.randint(1, 100), chat_id, vk_session)
 
     elif (text.lower() == '%команды') or (text.lower() == '%лист команд') or (text.lower() == '%список команд'):
         module_send.send('[СПИСОК КОМАНД]:\n' \
