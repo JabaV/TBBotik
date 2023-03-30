@@ -18,11 +18,9 @@ while True:
                 if event.from_chat:
                     chat_id = event.object.message['peer_id']
                     msg = event.object.message['text']
-                    if 'reply_message' in event.object.message:
-                        r_text = event.object.message['reply_message']['text']
-                        message_handler.handle_replied(msg, r_text, chat_id, vk_session)
-                    else:
-                        message_handler.handle_message(msg, chat_id, vk_session)
+                    
+                    r_text = event.object.message['reply_message']['text']
+                    message_handler.handle_message(msg, chat_id, vk_session, r_text)
             # elif (event.type == VkBotEventType.WALL_POST_NEW) & (event.obj['post_type'] == 'post'):
     except Exception as e:
         module_logger.Log(e)

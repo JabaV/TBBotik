@@ -5,7 +5,7 @@ from modules import module_porcess
 from modules import module_player_util
 
 
-def handle_message(text, chat_id, vk_session):
+def handle_message(text, chat_id, vk_session, replied_text=""):
     if text.lower() == "ква":
       module_send.kva(random.randint(1, 100), chat_id, vk_session)
 
@@ -34,6 +34,13 @@ def handle_message(text, chat_id, vk_session):
             ingredients = module_porcess.generate_ingredients(text[spacebar + 1:].lower())
             ingredients = module_porcess.resource_string_format(ingredients)
             module_send.send(ingredients, chat_id, vk_session)
+
+    elif replied_text != "":
+        if text.lower().startswith('счёт') or text.lower().startswith('счет'):
+            spacebar = text.find(' ')
+        if spacebar > -1:
+            respond = module_player_util.count(replied_text, text[spacebar + 1:].lower())
+        module_send.send(respond, chat_id, vk_session)
 
         # ДАЛЬШЕ ИДЁТ ОЧЕНЬ СТРАШНО
     elif text.lower().startswith("ранд"):
@@ -73,10 +80,3 @@ def handle_message(text, chat_id, vk_session):
 
             # дальше снова нормально
 
-
-def handle_replied(text, replied_text, chat_id, vk_session):
-    if text.lower().startswith('счёт') or text.lower().startswith('счет'):
-        spacebar = text.find(' ')
-        if spacebar > -1:
-            respond = module_player_util.count(replied_text, text[spacebar + 1:].lower())
-        module_send.send(respond, chat_id, vk_session)
