@@ -35,12 +35,12 @@ def handle_message(text, chat_id, vk_session, replied_text=""):
             ingredients = module_porcess.resource_string_format(ingredients)
             module_send.send(ingredients, chat_id, vk_session)
 
-    elif replied_text != "":
-        if text.lower().startswith('счёт') or text.lower().startswith('счет'):
+    elif text.lower().startswith('счёт') or text.lower().startswith('счет'):
+        if replied_text != "":
             spacebar = text.find(' ')
-        if spacebar > -1:
-            respond = module_player_util.count(replied_text, text[spacebar + 1:].lower())
-        module_send.send(respond, chat_id, vk_session)
+            if spacebar > -1:
+                respond = module_player_util.count(replied_text, text[spacebar + 1:].lower())
+                module_send.send(respond, chat_id, vk_session)
 
         # ДАЛЬШЕ ИДЁТ ОЧЕНЬ СТРАШНО
     elif text.lower().startswith("ранд"):
