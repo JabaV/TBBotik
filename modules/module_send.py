@@ -22,7 +22,7 @@ def repost(post_id, chat_id, vk_session):
     })
 
 
-def kva(c, chid, vk_session):
+def kva(c, chid, vk_session, replied_text=""):
     try:
         if c != 1:
             txt = 'Ква'
