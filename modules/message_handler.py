@@ -1,6 +1,5 @@
 import random
 import re
-import quantumrandom
 from modules import module_send
 from modules import module_porcess
 from modules import module_player_util
@@ -80,41 +79,3 @@ def handle_message(text, chat_id, vk_session, replied_text=""):
                 '] выпали на (' + num_list + ') = ' + str(n_sum), chat_id, vk_session)
 
             # дальше снова нормально
-            # Дальше пиздец
-
-    elif text.lower().startswith("истина"):
-        edge = list(map(int, re.findall(r'\d+', text)))
-        if len(edge) == 1:
-            e1 = edge[0]
-            module_send.send(
-                '!Истинно-случайное число из диапазона [' + '0' + '...' + str(e1) +
-                '] выпало на ' + str(quantumrandom.randint(0, e1)), chat_id, vk_session)
-        elif len(edge) == 2:
-            e1 = edge[0]
-            e2 = edge[1]
-            module_send.send(
-                '!Истинно-случайное число из диапазона [' + str(e1) + '...' + str(e2) +
-                '] выпало на ' + str(quantumrandom.randint(e1, e2)), chat_id, vk_session)
-        elif len(edge) == 3:
-            e1 = edge[0]
-            e2 = edge[1]
-            e3 = edge[2]
-            if e1 > 500:
-                e1 = 500
-            if e2 > 500:
-                e2 = 500
-            if e3 > 500:
-                e3 = 500
-            temp = quantumrandom.randint(e2, e3)
-            n_sum = temp
-            num_list = str(temp)
-            for i in range(e1 - 1):
-                temp = quantumrandom.randint(e2, e3)
-                n_sum += temp
-                num_list += " + " + str(temp)
-
-            module_send.send(
-                '!Истинно-случайные числа из диапазона [' + str(e2) + '...' + str(e3) +
-                '] выпали на (' + num_list + ') = ' + str(n_sum), chat_id, vk_session)
-
-            # Дальше снова нормально
