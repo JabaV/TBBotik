@@ -5,7 +5,7 @@ from modules import message_handler
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from modules import RKASS_module
 from modules import module_send
-secter = os.environ['token']
+secter = 'd9ebdf5b1a8498ec9bc3279df4d0ed8799649193e3a111a6e350d7c366b6641e798b4c555cb877dd63201' # os.environ['token'] # не забудь заменить на token
 
 keep_alive()
 vk_session = vk_api.VkApi(token=str(secter))  #
@@ -27,13 +27,29 @@ for event in longpoll.listen():
             chat_id = event.object.message['peer_id']
             uid = event.object.message['from_id']
             stscheck = RKASS_module.status_receive(uid)
-            RKASS_module.menu(uid, vk_session)
-            if msg == 'Да':
+            print(stscheck)
+            # RKASS_module.menu(uid, vk_session)
+            if msg == 'Хочу проверку':
                 if stscheck == 0:
                     RKASS_module.status_change(uid)
                     module_send.send('Отправьте карточку персонажа текстом', chat_id, vk_session)
-            if (msg != ('Да' or 'Нет')) and (msg.find('\n') >= 10) and stscheck == 1:
-                RKASS_module.inspection_user_send(msg)
+                else:
+                    print('123')
+            if (msg != ('Да' or 'Нет')):
+                print(msg)
+                if stscheck == 1:
+                    RKASS_module.inspection_user_send(msg, uid)
+                    RKASS_module.status_change(uid)
+            if msg.lower() == 'список персонажей':
+                RKASS_module.list_characters(uid, vk_session)
+
+            if msg.lower().startswith("//кто автор "):
+                cid = msg[12:]
+                result = RKASS_module.find_author_by_id(cid)
+                module_send.send(result, chat_id, vk_session)
+
+
+
 
 
 
