@@ -408,6 +408,14 @@ global = ["platformdirs (>=1.4.4)"]
 validation = ["pydantic (>=1.7.4)"]
 
 [[package]]
+name = "quantumrandom"
+version = "1.9.0"
+description = "A Python interface to the ANU Quantum Random Numbers Server"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "replit"
 version = "3.2.5"
 description = "A library for interacting with features of repl.it"
@@ -595,7 +603,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "bbf20fed3bda057dead1dbff7315729f94479a090ed712129ce6504f5941b849"
+content-hash = "f3d0e484e4e2313d92ba095b02e84c1bbc8c0464670b3072e4144d0c3c7e6831"
 
 [metadata.files]
 aiohttp = []
@@ -633,6 +641,7 @@ pyflakes = []
 pyseto = []
 python-lsp-jsonrpc = []
 pytoolconfig = []
+quantumrandom = []
 replit = []
 replit-python-lsp-server = []
 requests = []
