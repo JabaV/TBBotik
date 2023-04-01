@@ -71,8 +71,11 @@ def HeavyFunc_Random(text, chat_id, vk_session, replied_text=""):
             '] выпали на (' + num_list + ') = ' + str(n_sum), chat_id, vk_session)
 
 
+def Func_Kva(text, chat_id, vk_session, replied_text=""):
+    module_send.kva(random.randint(1, 100), chat_id, vk_session)
+
 commands = {
-    'ква': module_send.kva,
+    'ква': Func_Kva,
     'инг': HeavyFunc_Ingredients,
     'рес': HeavyFunc_Resources,
     'ран': HeavyFunc_Random,
