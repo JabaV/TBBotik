@@ -4,6 +4,7 @@ import vk_api
 from modules import message_handler
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from modules import RKASS_module
+from modules import module_send
 secter = os.environ['token']
 
 keep_alive()
@@ -23,12 +24,16 @@ for event in longpoll.listen():
                 message_handler.handle_message(msg, chat_id, vk_session)
         if event.from_user:
             msg = event.object.message['text']
-            sender = event.object.message['peer_id']
-            RKASS_module.menu(sender, vk_session)
-            if msg == 'Проверить':
-            xt = event.object.message['text']
-            ud = event.object.message['from_id']
-            RKASS_module.inspection_user_send(xt, ud)
+            chat_id = event.object.message['peer_id']
+            uid = event.object.message['from_id']
+            stscheck = RKASS_module.status_receive(uid)
+            RKASS_module.menu(uid, vk_session)
+            if msg == 'Да':
+                if stscheck == 0:
+                    RKASS_module.status_change(uid)
+                    module_send.send('Отправьте карточку персонажа текстом', chat_id, vk_session)
+            if (msg != ('Да' or 'Нет')) and (msg.find('\n') >= 10) and stscheck == 1:
+                RKASS_module.inspection_user_send(msg)
 
 
 
