@@ -29,7 +29,7 @@ for event in longpoll.listen():
             stscheck = RKASS_module.status_receive(uid)
             print(stscheck)
             # RKASS_module.menu(uid, vk_session)
-            if msg == 'Хочу проверку':
+            if msg.lower() == 'хочу проверку':
                 if stscheck == 0:
                     RKASS_module.status_change(uid)
                     module_send.send('Отправьте карточку персонажа текстом', chat_id, vk_session)

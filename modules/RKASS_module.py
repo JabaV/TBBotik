@@ -1,4 +1,5 @@
 import sqlite3
+import json
 from modules import module_send
 from vk_api.keyboard import *
 from vk_api.utils import get_random_id
@@ -57,7 +58,74 @@ def inspection_user_send(txt, uid):
     except sq.Error as error:
         print('Error', error)
 
-def list_characters(chat_id, vk_session):
+def list_characters(chat_id, vk_session, page=1):
+    try:
+        # Получаем данные персонажей из базы данных
+        cursor.execute("SELECT id, character FROM `characters`")
+        results = cursor.fetchall()
+
+        # Ограничиваем количество выводимых позиций до 15
+        start_index = (page - 1) * 10
+        end_index = start_index + 10
+        results = results[start_index:end_index]
+
+        # Формируем сообщение со списком персонажей
+        message = "Список персонажей:\n\n"
+        for i, (id, character) in enumerate(results, start=start_index+1):
+            message += "{0}】 [ID:{1}] {2}\n".format(i, id, character.split('\n')[0])
+
+        # Формируем клавиатуру со стрелками для перехода по страницам
+        if len(results) > 9:
+            # Формируем клавиатуру со стрелками для перехода по страницам
+            keyboard = {
+                "inline": True,
+                "buttons": [
+                    [
+                        {
+                            "action": {
+                                "type": "callback",
+                                "label": "«<<СТР",
+                                "payload": json.dumps({"page": page, "direction": "prev"}),
+                            },
+                            "color": "primary",
+                        },
+                        {
+                            "action": {
+                                "type": "callback",
+                                "label": "СТР>>»",
+                                "payload": json.dumps({"page": page, "direction": "next"}),
+                            },
+                            "color": "primary",
+                        },
+                    ]
+                ],
+            }
+
+            # Убираем кнопку "« Предыдущая страница" на первой странице
+            if page == 1:
+                keyboard["buttons"][0][0]["action"]["label"] = "<<СТР"
+                keyboard["buttons"][0][0]["action"]["payload"] = json.dumps({"page": page, "direction": "prev"}) 
+
+            # Убираем кнопку "Следующая страница »" на последней странице
+            if end_index >= len(results):
+                keyboard["buttons"][0][1]["action"]["label"] = "СТР>>»"
+                keyboard["buttons"][0][1]["action"]["payload"] = json.dumps({"page": page, "direction": "next"})
+        else:
+            keyboard = None
+
+        # Отправляем сообщение пользователю с клавиатурой
+        vk_session.method("messages.send", {
+            "peer_id": chat_id,
+            "message": message,
+            "random_id": get_random_id(),
+            "keyboard": json.dumps(keyboard) if keyboard else None,
+        })
+    except sq.Error as error:
+        print('Error', error)
+
+
+
+"""def list_characters2(chat_id, vk_session): # резерв
     try:
         # Получаем данные персонажей из базы данных
         cursor.execute("SELECT id, character FROM 'characters'")
@@ -75,7 +143,7 @@ def list_characters(chat_id, vk_session):
             'random_id': get_random_id()
         })
     except sq.Error as error:
-        print('Error', error)
+        print('Error', error)"""
 
 def find_author_by_id(cid):
     try:
