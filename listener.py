@@ -48,6 +48,11 @@ for event in longpoll.listen():
                 result = RKASS_module.find_author_by_id(cid)
                 module_send.send(result, chat_id, vk_session)
 
+            if msg.lower().startswith("//карточка "):
+                cid = msg[11:]
+                result = RKASS_module.show_character(chat_id, vk_session, cid)
+                
+
 
 
 
