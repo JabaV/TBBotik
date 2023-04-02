@@ -1,4 +1,5 @@
 import sqlite3
+from modules import module_send
 from vk_api.keyboard import *
 from vk_api.utils import get_random_id
 
@@ -93,3 +94,16 @@ def find_author_by_id(cid):
     except sq.Error as error:
         print("Error", error)
         return "Произошла ошибка"
+    
+def show_character(chat_id, vk_session, cid):
+    try:
+        cursor.execute("SELECT character FROM 'characters' WHERE id = ?", (cid,))
+        result = cursor.fetchone()
+        if not result:
+            module_send.send('Персонаж не найден', chat_id, vk_session)
+        else:
+            character_text = result[0]
+            module_send.send(character_text, chat_id, vk_session)
+    
+    except sq.Error as error:
+        print('Error', error)
