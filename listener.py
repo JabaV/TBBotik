@@ -5,7 +5,9 @@ from modules import message_handler
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 from modules import RKASS_module
 from modules import module_send
-secter = 'd9ebdf5b1a8498ec9bc3279df4d0ed8799649193e3a111a6e350d7c366b6641e798b4c555cb877dd63201' # os.environ['token'] # не забудь заменить на token
+
+secter = 'd9ebdf5b1a8498ec9bc3279df4d0ed8799649193e3a111a6e350d7c366b6641e798b4c555cb877dd63201'  # os.environ[
+# 'token'] # не забудь заменить на token
 
 keep_alive()
 vk_session = vk_api.VkApi(token=str(secter))  #
@@ -35,7 +37,7 @@ for event in longpoll.listen():
                     module_send.send('Отправьте карточку персонажа текстом', chat_id, vk_session)
                 else:
                     print('123')
-            if (msg != ('Да' or 'Нет')):
+            if msg != ('Да' or 'Нет'):
                 print(msg)
                 if stscheck == 1:
                     RKASS_module.inspection_user_send(msg, uid)
@@ -51,11 +53,19 @@ for event in longpoll.listen():
             if msg.lower().startswith("//карточка "):
                 cid = msg[11:]
                 result = RKASS_module.show_character(chat_id, vk_session, cid)
-                
 
+    elif event.type == VkBotEventType.MESSAGE_EVENT:
+        # Обработка событий от нажатия на кнопки
+        payload = event.obj.payload
+        page = payload.get('page', 1)
+        direction = payload.get('direction', '')
 
+        if direction == 'prev' and page > 1:
+            page -= 1
+        elif direction == 'next':
+            page += 1
 
-
-
+        # Вызываем функцию list_characters с обновленным значением страницы
+        RKASS_module.list_characters(uid, vk_session, page=page)
 
     # elif (event.type == VkBotEventType.WALL_POST_NEW) & (event.obj['post_type'] == 'post'):

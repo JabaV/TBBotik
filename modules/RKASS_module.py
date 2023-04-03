@@ -21,6 +21,7 @@ def menu(chat_id, vk_session):
         'keyboard': kbd.get_keyboard()
     })
 
+
 def status_change(uid):
     try:
         stscheck = cursor.execute("SELECT sts FROM 'status' WHERE chat_id = ?", (uid,))
@@ -35,6 +36,7 @@ def status_change(uid):
     except sq.Error as error:
         print('Error', error)
 
+
 def status_receive(uid):
     try:
         stscheck = cursor.execute("SELECT sts FROM 'status' WHERE chat_id = ?", (uid,))
@@ -48,15 +50,16 @@ def status_receive(uid):
     except sq.Error as error:
         print('Error', error)
 
+
 def inspection_user_send(txt, uid):
     try:
-        cursor.execute("INSERT INTO 'characters' ('character', 'status', 'owner_id') VALUES (?, ?, ?)", (txt, 'Ожидание проверки', uid))
-        cursor.execute("SELECT character, status FROM 'characters'")
-        results = cursor.fetchall()
+        cursor.execute("INSERT INTO 'characters' ('character', 'status', 'owner_id') VALUES (?, ?, ?)",
+                       (txt, 'Ожидание проверки', uid))
         conn.commit()
 
     except sq.Error as error:
         print('Error', error)
+
 
 def list_characters(chat_id, vk_session, page=1):
     try:
@@ -71,85 +74,43 @@ def list_characters(chat_id, vk_session, page=1):
 
         # Формируем сообщение со списком персонажей
         message = "Список персонажей:\n\n"
-        for i, (id, character) in enumerate(results, start=start_index+1):
+        for i, (id, character) in enumerate(results, start=start_index + 1):
             message += "{0}】 [ID:{1}] {2}\n".format(i, id, character.split('\n')[0])
 
         # Формируем клавиатуру со стрелками для перехода по страницам
-        if len(results) > 9:
-            # Формируем клавиатуру со стрелками для перехода по страницам
-            keyboard = {
-                "inline": True,
-                "buttons": [
-                    [
-                        {
-                            "action": {
-                                "type": "callback",
-                                "label": "«<<СТР",
-                                "payload": json.dumps({"page": page, "direction": "prev"}),
-                            },
-                            "color": "primary",
-                        },
-                        {
-                            "action": {
-                                "type": "callback",
-                                "label": "СТР>>»",
-                                "payload": json.dumps({"page": page, "direction": "next"}),
-                            },
-                            "color": "primary",
-                        },
-                    ]
-                ],
-            }
+        keyboard = VkKeyboard(inline=True)
 
-            # Убираем кнопку "« Предыдущая страница" на первой странице
-            if page == 1:
-                keyboard["buttons"][0][0]["action"]["label"] = "<<СТР"
-                keyboard["buttons"][0][0]["action"]["payload"] = json.dumps({"page": page, "direction": "prev"}) 
+        prev_page_payload = json.dumps({"page": page, "direction": "prev"})
+        next_page_payload = json.dumps({"page": page, "direction": "next"})
 
-            # Убираем кнопку "Следующая страница »" на последней странице
-            if end_index >= len(results):
-                keyboard["buttons"][0][1]["action"]["label"] = "СТР>>»"
-                keyboard["buttons"][0][1]["action"]["payload"] = json.dumps({"page": page, "direction": "next"})
-        else:
-            keyboard = None
+        keyboard.add_callback_button("«<<СТР", "primary", prev_page_payload)
+        keyboard.add_callback_button("СТР>>»", "primary", next_page_payload)
+        keyboard = keyboard.get_keyboard()
+
+        # Убираем кнопку "« Предыдущая страница" на первой странице
+        if page == 1:
+            keyboard = keyboard.replace(prev_page_payload, json.dumps({"page": page, "direction": "none"}))
+
+        # Убираем кнопку "Следующая страница »" на последней странице
+        if end_index >= len(results):
+            keyboard = keyboard.replace(next_page_payload, json.dumps({"page": page, "direction": "none"}))
 
         # Отправляем сообщение пользователю с клавиатурой
         vk_session.method("messages.send", {
             "peer_id": chat_id,
             "message": message,
             "random_id": get_random_id(),
-            "keyboard": json.dumps(keyboard) if keyboard else None,
+            "keyboard": keyboard,
         })
     except sq.Error as error:
         print('Error', error)
 
 
-
-"""def list_characters2(chat_id, vk_session): # резерв
-    try:
-        # Получаем данные персонажей из базы данных
-        cursor.execute("SELECT id, character FROM 'characters'")
-        results = cursor.fetchall()
-
-        # Формируем сообщение со списком персонажей
-        message = "Список персонажей:\n\n"
-        for i, (id, character) in enumerate(results, start=1):
-            message += "{0}】 [ID:{1}] {2}\n".format(i, id, character.split('\n')[0])
-
-        # Отправляем сообщение пользователю
-        vk_session.method('messages.send', {
-            'peer_id': chat_id,
-            'message': message,
-            'random_id': get_random_id()
-        })
-    except sq.Error as error:
-        print('Error', error)"""
-
 def find_author_by_id(cid):
     try:
-        cursor.execute("SELECT character FROM 'characters' WHERE id = ?", (cid))
+        cursor.execute("SELECT character FROM 'characters' WHERE id = ?", (cid,))
         result = cursor.fetchone()
-        cursor.execute("SELECT owner_id FROM 'characters' WHERE id = ?", (cid))
+        cursor.execute("SELECT owner_id FROM 'characters' WHERE id = ?", (cid,))
         usid = cursor.fetchone()
         if not result:
             return "Автор не найден"
@@ -162,7 +123,8 @@ def find_author_by_id(cid):
     except sq.Error as error:
         print("Error", error)
         return "Произошла ошибка"
-    
+
+
 def show_character(chat_id, vk_session, cid):
     try:
         cursor.execute("SELECT character FROM 'characters' WHERE id = ?", (cid,))
@@ -172,6 +134,6 @@ def show_character(chat_id, vk_session, cid):
         else:
             character_text = result[0]
             module_send.send(character_text, chat_id, vk_session)
-    
+
     except sq.Error as error:
         print('Error', error)

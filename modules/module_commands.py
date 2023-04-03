@@ -74,6 +74,7 @@ def HeavyFunc_Random(text, chat_id, vk_session, replied_text=""):
 def Func_Kva(text, chat_id, vk_session, replied_text=""):
     module_send.kva(random.randint(1, 100), chat_id, vk_session)
 
+
 commands = {
     'ква': Func_Kva,
     'инг': HeavyFunc_Ingredients,
@@ -83,4 +84,3 @@ commands = {
     'счё': Func_Counter,
     'сче': Func_Counter
 }
-

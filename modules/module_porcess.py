@@ -28,7 +28,7 @@ def generate_fight():
         'Бальдар х': random.randint(0, 2),
         'Рубинит х': random.randint(0, 2),
     }
-    return  res
+    return res
 
 
 def generate_boss():
@@ -132,7 +132,7 @@ def generate_mythic():
 def generate_legendary():
     res = {'Огневишня х': 0, 'Волчий глаз х': 0}
     chance = random.randint(1, 4)
-    if (chance == 1):
+    if chance == 1:
         ing = random.randint(0, 1)
         if ing == 0:
             res['Огневишня х'] = 1
@@ -147,4 +147,3 @@ def generate_koobrii(c):
         if 1 <= random.randint(1, 100) <= 15:
             res += 1
     return res
-
