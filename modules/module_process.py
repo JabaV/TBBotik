@@ -18,17 +18,18 @@ def generate_resources(difficulty):
 
 def generate_fight():
     res = {
-        'Ткань х': random.randint(0, 3),
-        'Железо х': random.randint(0, 4),
-        'Дерево х': random.randint(0, 5),
-        'Кожа Хиджакуры х': random.randint(0, 4),
-        'Кварц х': random.randint(0, 4),
-        'Медь х': random.randint(0, 3),
-        'Пламенный кристалл х': random.randint(0, 2),
-        'Бальдар х': random.randint(0, 2),
-        'Рубинит х': random.randint(0, 2),
+        'Ткань х': random.randint(0, 2),
+        'Железо х': random.randint(0, 2),
+        'Дерево х': random.randint(0, 3),
+        'Кожа Хиджакуры х': random.randint(0, 2),
+        'Кварц х': random.randint(0, 2),
+        'Медь х': random.randint(0, 2),
+        'Пламенный кристалл х': random.randint(-2, 1),
+        'Бальдар х': random.randint(-1, 1),
+        'Рубинит х': random.randint(-1, 1),
+        'Рунный камень х': random.randint(-2, 1)
     }
-    return  res
+    return res
 
 
 def generate_boss():
@@ -36,10 +37,11 @@ def generate_boss():
         'Ткань х': random.randint(1, 5),
         'Железо х': random.randint(1, 4),
         'Дерево х': random.randint(1, 6),
-        'Пламенный кристалл х': random.randint(0, 2),
+        'Пламенный кристалл х': random.randint(-1, 2),
         'Йельский патник х': random.randint(0, 2),
         'Итодол х': random.randint(0, 3),
-        'Ланк х': random.randint(1, 4)
+        'Ланк х': random.randint(0, 2),
+        'Рунный камень х': random.randint(-1, 2)
     }
     return res
 
@@ -83,6 +85,10 @@ def generate_ingredients(rarity):
             ingredients = generate_mythic()
         case 'лег':
             ingredients = generate_legendary()
+    if ingredients != '':
+        return ingredients
+    else:
+        return 'null'
     return ingredients
 
 
@@ -99,34 +105,34 @@ def generate_usual():
 
 def generate_rare():
     res = {
-        'Огнецвет х': random.randint(1, 3),
-        'Сера х': random.randint(1, 4),
-        'Серный концентрат х': random.randint(0, 4),
+        'Огнецвет х': random.randint(0, 2),
+        'Сера х': random.randint(-1, 3),
+        'Серный концентрат х': random.randint(-2, 4),
         'Волос с подмыхи гиганта х': random.randint(-2, 3)
-      
+
     }
     return res
 
 
 def generate_epic():
     res = {
-        'Лунный свет х': random.randint(0, 2),
-        'Солнечный свет х': random.randint(0, 2),
-        'Кровь виверны х': random.randint(0, 1),
-        'Кристалльная кровь х': random.randint(0, 2),
-        'Вода из волшебного колодца х': random.randint(0, 2),
-        'Сок живого дерева х': random.randint(0, 2),
-        'СтРаННый ГРиБ х': random.randint(0, 5),
-        'Чёрная роза х': random.randint(0, 3)
+        'Лунный свет х': random.randint(-2, 1),
+        'Солнечный свет х': random.randint(-2, 2),
+        'Кровь виверны х': random.randint(-1, 1),
+        'Кристалльная кровь х': random.randint(-2, 2),
+        'Вода из волшебного колодца х': random.randint(-4, 2),
+        'Сок живого дерева х': random.randint(-3, 2),
+        'СтРаННый ГРиБ х': random.randint(-2, 5),
+        'Чёрная роза х': random.randint(-1, 3)
     }
     return res
 
 
 def generate_mythic():
     res = {
-        'Слюна горного козла х': random.randint(0, 1),
+        'Слюна горного пиздюля х': random.randint(-1, 1),
         'Пузырёк магмы х': random.randint(0, 2),
-        'Пещерный корень х': random.randint(0, 2)
+        'Пещерный корень х': random.randint(-1, 2)
     }
     return res
 
