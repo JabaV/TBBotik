@@ -1,29 +1,29 @@
 import random
 import re
 from modules import module_player_util
-from modules import module_porcess
+from modules import module_process
 from modules import module_send
 
 
 def HeavyFunc_Resources(text, chat_id, vk_session, replied_text=""):
     spacebar = text.find(' ')
     if spacebar > -1:
-        resources = module_porcess.generate_resources(text[spacebar + 1:].lower())
-        resources = module_porcess.resource_string_format(resources)
+        resources = module_process.generate_resources(text[spacebar + 1:].lower())
+        resources = module_process.resource_string_format(resources)
         module_send.send(resources, chat_id, vk_session)
 
 
 def HeavyFunc_Ingredients(text, chat_id, vk_session, replied_text=""):
     spacebar = text.find(' ')
     if spacebar > -1:
-        ingredients = module_porcess.generate_ingredients(text[spacebar + 1:].lower())
-        ingredients = module_porcess.resource_string_format(ingredients)
+        ingredients = module_process.generate_ingredients(text[spacebar + 1:].lower())
+        ingredients = module_process.resource_string_format(ingredients)
         module_send.send(ingredients, chat_id, vk_session)
 
 
 def HeavyFunc_Koobrii(text, chat_id, vk_session, replied_text=""):
     if text[7:].isdigit():
-        amount = module_porcess.generate_koobrii(int(text[7:]))
+        amount = module_process.generate_koobrii(int(text[7:]))
         module_send.send('Осколки кубрия х{0}'.format(amount), chat_id, vk_session)
 
 
@@ -36,19 +36,20 @@ def Func_Counter(text, chat_id, vk_session, replied_text=""):
 
 
 def HeavyFunc_Random(text, chat_id, vk_session, replied_text=""):
+    checking = text.split(' ')
     edge = list(map(int, re.findall(r'\d+', text)))
-    if len(edge) == 1:
+    if (len(edge) == 1) and (len(checking) == 2):
         e1 = edge[0]
         module_send.send(
             '!Случайное число из диапазона [' + '0' + '...' + str(e1) +
             '] выпало на ' + str(random.randint(0, e1)), chat_id, vk_session)
-    elif len(edge) == 2:
+    elif (len(edge) == 2) and (len(checking) == 3):
         e1 = edge[0]
         e2 = edge[1]
         module_send.send(
             '!Случайное число из диапазона [' + str(e1) + '...' + str(e2) +
             '] выпало на ' + str(random.randint(e1, e2)), chat_id, vk_session)
-    elif len(edge) == 3:
+    elif (len(edge) == 3) and (len(checking) == 4):
         e1 = edge[0]
         e2 = edge[1]
         e3 = edge[2]
@@ -74,13 +75,14 @@ def HeavyFunc_Random(text, chat_id, vk_session, replied_text=""):
 def Func_Kva(text, chat_id, vk_session, replied_text=""):
     module_send.kva(random.randint(1, 100), chat_id, vk_session)
 
+
 commands = {
     'ква': Func_Kva,
-    'инг': HeavyFunc_Ingredients,
-    'рес': HeavyFunc_Resources,
-    'ран': HeavyFunc_Random,
-    'куб': HeavyFunc_Koobrii,
-    'счё': Func_Counter,
-    'сче': Func_Counter
+    'ингры': HeavyFunc_Ingredients,
+    'ресы': HeavyFunc_Resources,
+    'рандом': HeavyFunc_Random,
+    'кубрий': HeavyFunc_Koobrii,
+    'счёт': Func_Counter,
+    'счет': Func_Counter
 }
 
