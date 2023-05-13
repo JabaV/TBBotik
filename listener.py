@@ -22,10 +22,10 @@ def listen(session):
                 r_text = ""
                 if 'reply_message' in event.object.message:
                     r_text = event.object.message['reply_message']['text']
-                message_handler.handle_message(msg, chat_id, vk_session, r_text)
+                module_handler.handle_message(msg, chat_id, vk_session, r_text)
         elif (event.type == VkBotEventType.WALL_POST_NEW) & (event.obj['post_type'] == 'post'):
             post_id = event.obj['post_id']
-            message_handler.handle_post(post_id, session)
+            module_handler.handle_post(post_id, session)
 
 
 while True:
