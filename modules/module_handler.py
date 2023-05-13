@@ -8,3 +8,6 @@ def handle_message(text, chat_id, vk_session, replied_text=""):
     elif text[:3].lower() == 'ква':
         module_commands.commands[text[:3].lower()](text, chat_id, vk_session, replied_text)
 
+
+def handle_post(post_id, vk_session):
+    module_commands.func_repost(post_id, vk_session)
