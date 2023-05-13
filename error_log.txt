@@ -1,7 +1,0 @@
-[2023-03-30]HTTP Error 500: Internal Server Error
-[2023-03-30]HTTP Error 500: Internal Server Error
-[2023-03-30]HTTP Error 500: Internal Server Error
-[2023-03-30]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
-[2023-03-31]HTTPSConnectionPool(host='lp.vk.com', port=443): Read timed out. (read timeout=35)
-[2023-04-01] kva() takes 3 positional arguments but 4 were given
-[2023-04-01] kva() takes 3 positional arguments but 4 were given
