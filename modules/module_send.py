@@ -16,7 +16,7 @@ def send(text, chat_id, vk_session):
 def repost(post_id, chat_id, vk_session):
     vk_session.method('messages.send', {
         'peer_id': chat_id,
-        'attachment': 'wall-172386457_' + post_id,
+        'attachment': 'wall-172386457_' + str(post_id),
         'message': 'Новый пост в группе:',
         'random_id': get_random_id()
     })
