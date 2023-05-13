@@ -24,7 +24,7 @@ def listen(session):
                     r_text = event.object.message['reply_message']['text']
                 module_handler.handle_message(msg, chat_id, vk_session, r_text)
         elif (event.type == VkBotEventType.WALL_POST_NEW) & (event.obj['post_type'] == 'post'):
-            post_id = event.obj['post_id']
+            post_id = event.obj['id']
             module_handler.handle_post(post_id, session)
 
 
