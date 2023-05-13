@@ -1,7 +1,7 @@
 from webserver import keep_alive
 import os
 import vk_api
-from modules import message_handler
+from modules import module_handler
 from modules import module_logger
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 secter = os.environ['token']
@@ -13,7 +13,7 @@ reserve = vk_api.VkApi(token=str(another))
 
 
 def listen(session):
-    longpoll = VkBotLongPoll(session, 206394583)
+    longpoll = VkBotLongPoll(session, 172386457)
     for event in longpoll.listen():
         if event.type == VkBotEventType.MESSAGE_NEW:
             if event.from_chat:
@@ -23,7 +23,9 @@ def listen(session):
                 if 'reply_message' in event.object.message:
                     r_text = event.object.message['reply_message']['text']
                 message_handler.handle_message(msg, chat_id, vk_session, r_text)
-        # elif (event.type == VkBotEventType.WALL_POST_NEW) & (event.obj['post_type'] == 'post'):
+        elif (event.type == VkBotEventType.WALL_POST_NEW) & (event.obj['post_type'] == 'post'):
+            post_id = event.obj['post_id']
+            message_handler.handle_post(post_id, session)
 
 
 while True:
