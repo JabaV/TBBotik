@@ -11,6 +11,7 @@ keep_alive()
 vk_session = vk_api.VkApi(token=str(secter))
 reserve = vk_api.VkApi(token=str(another))
 
+current = vk_session
 
 def listen(session):
     longpoll = VkBotLongPoll(session, 172386457)
@@ -29,7 +30,6 @@ def listen(session):
 
 
 while True:
-    current = vk_session
     try:
         listen(current)
     except Exception as e:
