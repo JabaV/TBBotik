@@ -3,6 +3,7 @@ import os
 import vk_api
 from modules import module_handler
 from modules import module_logger
+from time import sleep
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 secter = os.environ['token']
 another = os.environ['alt_token']
@@ -36,9 +37,13 @@ while True:
         if str(e).__contains__("Max retries exceeded with url"):
             if current == vk_session:
                 current = reserve
-                module_logger.Log("Switched key to reserve")
+                module_logger.Log("Switched key to reserve, now sleep")
+                module_logger.Log(e)
+                sleep(40)
             else:
                 current = vk_session
-                module_logger.Log("Switched key to main")
+                module_logger.Log("Switched key to main, now sleep")
+                sleep(40)
         else:
             module_logger.Log(e)
+            sleep(40)
