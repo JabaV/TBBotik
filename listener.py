@@ -9,6 +9,7 @@ secter = os.environ['token']
 another = os.environ['alt_token']
 
 keep_alive()
+
 vk_session = vk_api.VkApi(token=str(secter))
 reserve = vk_api.VkApi(token=str(another))
 
@@ -24,7 +25,7 @@ def listen(session):
                 r_text = ""
                 if 'reply_message' in event.object.message:
                     r_text = event.object.message['reply_message']['text']
-                module_handler.handle_message(msg, chat_id, vk_session, r_text)
+                module_handler.handle_message(msg, chat_id, session, r_text)
         elif (event.type == VkBotEventType.WALL_POST_NEW) & (event.obj['post_type'] == 'post'):
             post_id = event.obj['id']
             module_handler.handle_post(post_id, session)
@@ -34,16 +35,16 @@ while True:
     try:
         listen(current)
     except Exception as e:
-        if str(e).__contains__("Max retries exceeded with url"):
+        if str(e).__contains__("Connection aborted"):
             if current == vk_session:
                 current = reserve
                 module_logger.Log("Switched key to reserve, now sleep")
                 module_logger.Log(e)
-                sleep(40)
+                sleep(10)
             else:
                 current = vk_session
                 module_logger.Log("Switched key to main, now sleep")
-                sleep(40)
+                sleep(10)
         else:
             module_logger.Log(e)
-            sleep(40)
+            sleep(10)
