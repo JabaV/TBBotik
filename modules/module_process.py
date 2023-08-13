@@ -41,6 +41,7 @@ def generate_boss():
         'Йельский патник х': random.randint(0, 2),
         'Итодол х': random.randint(0, 3),
         'Ланк х': random.randint(0, 2),
+        'Тёмная частица x': random.randint(0, 1),
         'Рунный камень х': random.randint(-1, 2)
     }
     return res
@@ -98,7 +99,8 @@ def generate_usual():
         'Клык волка х': random.randint(1, 6),
         'Жаба х': random.randint(1, 6),
         'Сушёные грибы х': random.randint(0, 2),
-        'Пряности х': random.randint(1, 4)
+        'Пряности х': random.randint(1, 4),
+        'Вода из горячих источников х': random.randint(1, 2)
     }
     return res
 
@@ -122,7 +124,7 @@ def generate_epic():
         'Кристалльная кровь х': random.randint(-2, 2),
         'Вода из волшебного колодца х': random.randint(-4, 2),
         'Сок живого дерева х': random.randint(-3, 2),
-        'СтРаННый ГРиБ х': random.randint(-2, 5),
+        'СтРаННый ГРиБ х': random.randint(-2, 2),
         'Чёрная роза х': random.randint(-1, 3)
     }
     return res
@@ -139,7 +141,7 @@ def generate_mythic():
 
 def generate_legendary():
     res = {'Огневишня х': 0, 'Волчий глаз х': 0}
-    chance = random.randint(1, 4)
+    chance = random.randint(1, 2)
     if (chance == 1):
         ing = random.randint(0, 1)
         if ing == 0:

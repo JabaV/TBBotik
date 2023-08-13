@@ -19,7 +19,7 @@ def listen(session):
     longpoll = VkBotLongPoll(session, 172386457)
     for event in longpoll.listen():
         if event.type == VkBotEventType.MESSAGE_NEW:
-            if event.from_chat:
+            if event.from_chat or event.from_user:
                 chat_id = event.object.message['peer_id']
                 msg = event.object.message['text']
                 r_text = ""
@@ -39,7 +39,6 @@ while True:
             if current == vk_session:
                 current = reserve
                 module_logger.Log("Switched key to reserve, now sleep")
-                module_logger.Log(e)
                 sleep(10)
             else:
                 current = vk_session
