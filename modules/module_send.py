@@ -3,10 +3,19 @@ from modules import module_logger
 
 
 def send(text, chat_id, vk_session):
+    vk_session.method('messages.send', {
+        'peer_id': chat_id,
+        'message': text,
+        'random_id': get_random_id()
+    })
+
+
+def send_attachment(text, chat_id, attachment, session):
     try:
-        vk_session.method('messages.send', {
+        session.method('messages.send', {
             'peer_id': chat_id,
             'message': text,
+            'attachment': attachment,
             'random_id': get_random_id()
         })
     except Exception as e:
@@ -14,12 +23,15 @@ def send(text, chat_id, vk_session):
 
 
 def repost(post_id, chat_id, vk_session):
-    vk_session.method('messages.send', {
-        'peer_id': chat_id,
-        'attachment': 'wall-172386457_' + str(post_id),
-        'message': 'Новый пост в группе:',
-        'random_id': get_random_id()
-    })
+    try:
+        vk_session.method('messages.send', {
+            'peer_id': chat_id,
+            'attachment': 'wall-172386457_' + str(post_id),
+            'message': 'Новый пост в группе:',
+            'random_id': get_random_id()
+        })
+    except Exception as e:
+        module_logger.Log(e)
 
 
 def kva(c, chid, vk_session, replied_text=""):
@@ -38,4 +50,4 @@ def kva(c, chid, vk_session, replied_text=""):
                 'attachment': attch
             })
     except Exception as e:
-        module_logger.Log(e)
+        module_logger.eLog(e)

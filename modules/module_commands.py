@@ -1,6 +1,6 @@
 import random
 import re
-from modules import module_player_util
+from modules import module_util
 from modules import module_process
 from modules import module_send
 
@@ -31,7 +31,7 @@ def Func_Counter(text, chat_id, vk_session, replied_text=""):
     if replied_text != "":
         spacebar = text.find(' ')
         if spacebar > -1:
-            respond = module_player_util.count(replied_text, text[spacebar + 1:].lower())
+            respond = module_util.count(replied_text, text[spacebar + 1:].lower())
             module_send.send(respond, chat_id, vk_session)
 
 
@@ -80,6 +80,24 @@ def func_repost(post_id, vk_session, chat_id=2000000009):
     module_send.repost(post_id, chat_id, vk_session)
 
 
+def Func_rules(param, chat_id, session, replied_text=""):
+    spacebar = param.find(' ')
+    if spacebar > -1:
+        param = param[param.find(' ') + 1:]
+        rule = module_util.getrule(param)
+    else: rule = module_util.getrule('a')
+    module_send.send(rule, chat_id, session)
+
+
+def Func_shop(name, chat_id, session, replied_text=""):
+    spacebar = name.find(' ')
+    if spacebar > -1:
+        name = name[name.find(' ') + 1:]
+        shop, image = module_util.readshop(name)
+        image = 'photo-172386457_' + image
+        module_send.send_attachment(shop, chat_id, image, session)
+
+
 commands = {
     'ква': Func_Kva,
     'ингры': HeavyFunc_Ingredients,
@@ -87,6 +105,8 @@ commands = {
     'рандом': HeavyFunc_Random,
     'кубрий': HeavyFunc_Koobrii,
     'счёт': Func_Counter,
-    'счет': Func_Counter
+    'счет': Func_Counter,
+    'правила': Func_rules,
+    'магазин': Func_shop
 }
 
