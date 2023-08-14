@@ -50,4 +50,4 @@ def kva(c, chid, vk_session, replied_text=""):
                 'attachment': attch
             })
     except Exception as e:
-        module_logger.eLog(e)
+        module_logger.Log(e)
