@@ -35,27 +35,27 @@ def getrule(param):
     match (param):
         case 'общие':
             respond = readrules(2)
-        case 'глоссарий', 'глоссария':
+        case 'глоссарий'|'глоссария':
             respond = readrules(3)
-        case 'персов', 'классов':
+        case 'персов'|'классов':
             respond = readrules(4)
-        case 'рангов', 'ранги':
+        case 'рангов'|'ранги':
             respond = readrules(5)
-        case 'общения', 'флуда', 'флуд':
+        case 'общения'|'флуда'|'флуд':
             respond = readrules(6)
         case 'магазина':
             respond = readrules(7)
-        case 'вещей', 'итемов':
+        case 'вещей'|'итемов':
             respond = readrules(8)
-        case 'рынка', 'рынок':
+        case 'рынка'|'рынок':
             respond = readrules(9)
-        case 'рейдов', 'рейды':
+        case 'рейдов'|'рейды':
             respond = readrules(10)
         case 'лора':
             respond = readrules(11)
-        case 'зелий', 'зельеварения', 'зелья':
+        case 'зелий'|'зельеварения'|'зелья':
             respond = readrules(12)
-        case 'пвп', 'кодекс', 'кодекс чести':
+        case 'пвп'|'кодекс'|'кодекс чести':
 	        respond = readrules(14)
         case _:
             respond = readrules(1)
