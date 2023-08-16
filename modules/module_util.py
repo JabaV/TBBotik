@@ -36,7 +36,7 @@ def getrule(param):
             respond = readrules(2)
         case 'глоссарий'|'глоссария':
             respond = readrules(3)
-        case 'персов'|'классов'|'классы':
+        case 'персов'|'классов'|'классы'|'персы'|'перс'|'персонажей'|'персонажи'|'персонажа'|'персонаж':
             respond = readrules(4)
         case 'рангов'|'ранги':
             respond = readrules(5)
