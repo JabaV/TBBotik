@@ -25,7 +25,6 @@ def readrules(line):
     with open('Files/Rules.txt', 'r', encoding='utf-8') as Rule:
         for _ in range(line):
             respond = Rule.readline()
-            print(str(respond))
     return respond
 
 

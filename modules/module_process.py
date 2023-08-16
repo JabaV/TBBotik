@@ -110,6 +110,9 @@ def generate_rare():
         'Огнецвет х': random.randint(0, 2),
         'Сера х': random.randint(-1, 3),
         'Серный концентрат х': random.randint(-2, 4),
+        'Красная воронка х': random.randint(-2, 2),
+        'Засохший мох х': random.randint(-2, 2),
+        'Красный кристалл х': random.randint(-2, 1),
         'Волос с подмыхи гиганта х': random.randint(-2, 3)
 
     }
