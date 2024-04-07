@@ -5,7 +5,7 @@ from modules import module_logger
 from time import sleep
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
-data = open("../data", "r")
+data = open("data", "r")
 print("File opened")
 contents = data.readlines()
 data.close()
