@@ -4,9 +4,12 @@ from modules import module_handler
 from modules import module_logger
 from time import sleep
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
+
 data = open("../data", "r")
+print("File opened")
 contents = data.readlines()
 data.close()
+print("Closed")
 
 secter = contents[0].strip('\n')
 another = contents[1].strip('\n')
@@ -37,6 +40,7 @@ def listen(session):
 
 while True:
     try:
+        print("Starting listening")
         listen(current)
     except Exception as e:
         if str(e).__contains__("Connection aborted"):
