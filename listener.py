@@ -1,19 +1,23 @@
 from webserver import keep_alive
-import os
 import vk_api
 from modules import module_handler
 from modules import module_logger
 from time import sleep
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
-secter = os.environ['token']
-another = os.environ['alt_token']
+data = open("../data", "r")
+contents = data.readlines()
+data.close()
 
-keep_alive()
+secter = contents[0].strip('\n')
+another = contents[1].strip('\n')
+
+# keep_alive()
 
 vk_session = vk_api.VkApi(token=str(secter))
 reserve = vk_api.VkApi(token=str(another))
 
 current = vk_session
+
 
 def listen(session):
     longpoll = VkBotLongPoll(session, 172386457)
