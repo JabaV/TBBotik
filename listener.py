@@ -26,6 +26,9 @@ def listen(session):
     longpoll = VkBotLongPoll(session, 172386457)
     for event in longpoll.listen():
         if event.type == VkBotEventType.MESSAGE_NEW:
+            if event.from_user and event.object.message['peer_id'] == 372894745 or event.object.message['peer_id'] == 222366400:
+                if event.object.message['text'] == 'stfu':
+                    exit()
             if event.from_chat or event.from_user:
                 chat_id = event.object.message['peer_id']
                 msg = event.object.message['text']
