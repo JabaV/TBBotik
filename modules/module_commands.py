@@ -97,6 +97,26 @@ def Func_shop(name, chat_id, session, replied_text=""):
         image = 'photo-172386457_' + image
         module_send.send_attachment(shop, chat_id, image, session)
 
+def HeavyFunc_randomSort(text, chat_id, session, replied_text=""):
+    checking = text.split(' ')
+    edge = list(map(int, re.findall(r'\d+', text)))
+    if (len(edge) == 2) and (len(checking) == 3):
+        e1 = edge[0]
+        e2 = edge[1]
+        num_list = []
+        for i in range(e1, e2+1):
+            num_list.append(i)
+
+        random.shuffle(num_list)
+        out_list = str(num_list[0])
+
+        for x in range(1, len(num_list)):
+            out_list += ", " + str(num_list[x])
+
+        module_send.send(
+            'Случайный порядок диапазона [' + str(e1) + '...' + str(e2) +
+            '] определён так: ' + out_list, chat_id, session)
+
 
 commands = {
     'ква': Func_Kva,
@@ -107,6 +127,7 @@ commands = {
     'счёт': Func_Counter,
     'счет': Func_Counter,
     'правила': Func_rules,
-    'магазин': Func_shop
+    'магазин': Func_shop,
+    'порядок': HeavyFunc_randomSort
 }
 
