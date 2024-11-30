@@ -46,7 +46,7 @@ while True:
         print("Starting listening")
         listen(current)
     except Exception as e:
-        if str(e).__contains__("Connection aborted") or str(e).__contains__("Read timeout"):
+        if str(e).__contains__("Connection aborted") or str(e).__contains__("Read timed out"):
             if current == vk_session:
                 current = reserve
                 module_logger.Log("Switched key to reserve")
