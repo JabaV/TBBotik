@@ -1,4 +1,4 @@
-from webserver import keep_alive
+#from webserver import keep_alive
 import vk_api
 from modules import module_handler
 from modules import module_logger
