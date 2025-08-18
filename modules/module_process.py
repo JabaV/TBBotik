@@ -39,6 +39,7 @@ def generate_boss():
         'Дерево х': random.randint(1, 6),
         'Пламенный кристалл х': random.randint(-1, 2),
         'Йельский патник х': random.randint(0, 2),
+        'Дозер х': random.randint(0, 2),
         'Итодол х': random.randint(0, 3),
         'Ланк х': random.randint(0, 2),
         'Тёмная частица x': random.randint(0, 1),

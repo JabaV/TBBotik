@@ -76,7 +76,7 @@ def Func_Kva(text, chat_id, vk_session, replied_text=""):
     module_send.kva(random.randint(1, 100), chat_id, vk_session)
 
 
-def func_repost(post_id, vk_session, chat_id=2000000009):
+def func_repost(post_id, vk_session, chat_id=2000000014):
     module_send.repost(post_id, chat_id, vk_session)
 
 
