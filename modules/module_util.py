@@ -34,28 +34,28 @@ def getrule(param):
     match (param):
         case 'общие':
             respond = readrules(2)
-        case 'глоссарий'|'глоссария':
+        case 'глоссарий' | 'глоссария':
             respond = readrules(3)
-        case 'персов'|'классов'|'классы'|'персы'|'перс'|'персонажей'|'персонажи'|'персонажа'|'персонаж':
+        case 'персов' | 'классов' | 'классы' | 'персы' | 'персов' | 'персонажей' | 'персонажи' | 'персонажа' | 'персонаж':
             respond = readrules(4)
-        case 'рангов'|'ранги':
+        case 'рангов' | 'ранги':
             respond = readrules(5)
-        case 'общения'|'флуда'|'флуд':
+        case 'общения' | 'флуда' | 'флуд':
             respond = readrules(6)
-        case 'магазина'|'магазин':
+        case 'магазина' | 'магазин':
             respond = readrules(7)
-        case 'вещей'|'итемов'|'итемы'|'вещи':
+        case 'вещей' | 'итемов' | 'итемы' | 'вещи':
             respond = readrules(8)
-        case 'рынка'|'рынок'|'базар'|'базара':
+        case 'рынка' | 'рынок' | 'базар' | 'базара':
             respond = readrules(9)
-        case 'рейдов'|'рейды'|'рейд'|'данж'|'данжи'|'данжей':
+        case 'рейдов' | 'рейды' | 'рейд' | 'данж' | 'данжи' | 'данжей':
             respond = readrules(10)
-        case 'лора'|'лор':
+        case 'лора' | 'лор':
             respond = readrules(11)
-        case 'зелий'|'зельеварения'|'зелья':
+        case 'зелий' | 'зельеварения' | 'зелья':
             respond = readrules(12)
-        case 'пвп'|'кодекс'|'кодекс чести':
-	        respond = readrules(14)
+        case 'пвп' | 'кодекс' | 'кодекс чести':
+            respond = readrules(14)
         case _:
             respond = readrules(1)
-    return respond
+    return respond.replace(';', '\n')

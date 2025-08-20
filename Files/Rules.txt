@@ -1,14 +1,14 @@
-vk.com/@topbossfights-nav
-vk.com/@topbossfights-rules
-vk.com/@topbossfights-glossary
-vk.com/@topbossfights-characters
-vk.com/@topbossfights-ranks
-vk.com/@topbossfights-speak-rules
-vk.com/@topbossfights-shops
-vk.com/@topbossfights-items
-vk.com/@topbossfights-bazaar
-vk.com/@topbossfights-events
-vk.com/@topbossfights-lore
-vk.com/@topbossfights-brewing
-vk.com/@topbossfights-achievments
-vk.com/@topbossfights-pvp
+Версия на сайте: https://tbdocs.netlify.app/rules;[vk.com/@topbossfights-nav|Статья-навигатор в вк]
+Версия на сайте: https://tbdocs.netlify.app/overall;[vk.com/@topbossfights-rules|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/glossary;[vk.com/@topbossfights-glossary|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/classes;[vk.com/@topbossfights-classes|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/ranks;[vk.com/@topbossfights-ranks|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/chat-rules;[vk.com/@topbossfights-speak-rules|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/shops;[vk.com/@topbossfights-shops|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/items;[vk.com/@topbossfights-items|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/bazaar;[vk.com/@topbossfights-bazaar|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/events;[vk.com/@topbossfights-events|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/;[vk.com/@topbossfights-lore|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/brewing;[vk.com/@topbossfights-brewing|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/;[vk.com/@topbossfights-achievments|Статья в вк]
+Версия на сайте: https://tbdocs.netlify.app/pvp;[vk.com/@topbossfights-pvp|Статья в вк]
