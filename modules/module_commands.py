@@ -85,8 +85,10 @@ def Func_rules(param, chat_id, session, replied_text=""):
     if spacebar > -1:
         param = param[param.find(' ') + 1:]
         rule = module_util.getrule(param)
-    else: rule = module_util.getrule('a')
-    module_send.send(rule, chat_id, session)
+    else:
+        rule = module_util.getrule('все')
+    if param is not None:
+        module_send.send(rule, chat_id, session)
 
 
 def Func_shop(name, chat_id, session, replied_text=""):

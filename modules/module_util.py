@@ -56,6 +56,8 @@ def getrule(param):
             respond = readrules(12)
         case 'пвп' | 'кодекс' | 'кодекс чести':
             respond = readrules(14)
-        case _:
+        case 'навигатор' | 'все':
             respond = readrules(1)
+        case _:
+            respond = None
     return respond.replace(';', '\n')
