@@ -26,8 +26,7 @@ def generate_fight():
         'Медь х': random.randint(0, 2),
         'Пламенный кристалл х': random.randint(-2, 1),
         'Бальдар х': random.randint(-1, 1),
-        'Рубинит х': random.randint(-1, 1),
-        'Рунный камень х': random.randint(-2, 1)
+        'Рубинит х': random.randint(-1, 1)
     }
     return res
 
@@ -43,7 +42,7 @@ def generate_boss():
         'Итодол х': random.randint(0, 3),
         'Ланк х': random.randint(0, 2),
         'Тёмная частица x': random.randint(0, 1),
-        'Рунный камень х': random.randint(-1, 2)
+        'Рунный камень х': random.randint(-1, 1)
     }
     return res
 
@@ -77,13 +76,11 @@ def generate_ingredients(rarity):
     match rarity:
         case 'обычные':
             ingredients = generate_usual()
-        case 'редкие':
+        case 'редкие' | 'рар':
             ingredients = generate_rare()
         case 'эпик':
             ingredients = generate_epic()
-        case 'мифик':
-            ingredients = generate_mythic()
-        case 'миф':
+        case 'миф' | 'мифик':
             ingredients = generate_mythic()
         case 'лег':
             ingredients = generate_legendary()
@@ -91,46 +88,74 @@ def generate_ingredients(rarity):
         return ingredients
     else:
         return 'null'
-    return ingredients
 
 
 def generate_usual():
-    res = {
-        'Вырванный глаз х': random.randint(1, 6),
-        'Клык волка х': random.randint(1, 6),
-        'Жаба х': random.randint(1, 6),
-        'Сушёные грибы х': random.randint(0, 2),
-        'Пряности х': random.randint(1, 4),
-        'Вода из горячих источников х': random.randint(1, 2)
-    }
+
+    done = False
+
+    while not done:
+        res = {
+            'Вырванный глаз х': random.randint(-2, 2),
+            'Клык волка х': random.randint(-2, 2),
+            'Жаба х': random.randint(-2, 2),
+            'Сушёные грибы х': random.randint(-2, 2),
+            'Пряности х': random.randint(-2, 2),
+            'Вода из горячих источников х': random.randint(-2, 2)
+        }
+
+        for i in res.keys():
+            if res[i] > 0:
+                done = True
+                break
+
     return res
 
 
 def generate_rare():
-    res = {
-        'Огнецвет х': random.randint(0, 2),
-        'Сера х': random.randint(-1, 3),
-        'Серный концентрат х': random.randint(-2, 4),
-        'Красная воронка х': random.randint(-2, 2),
-        'Засохший мох х': random.randint(-2, 2),
-        'Красный кристалл х': random.randint(-2, 1),
-        'Волос с подмыхи гиганта х': random.randint(-2, 3)
 
-    }
+    done = False
+
+    while not done:
+        res = {
+            'Огнецвет х': random.randint(0, 2),
+            'Сера х': random.randint(-2, 3),
+            'Серный концентрат х': random.randint(-2, 2),
+            'Красная воронка х': random.randint(-2, 2),
+            'Засохший мох х': random.randint(-2, 2),
+            'Красный кристалл х': random.randint(-2, 1),
+            'Волос с подмыхи гиганта х': random.randint(-2, 2)
+        }
+
+        for i in res.keys():
+            if res[i] > 0:
+                done = True
+                break
+
     return res
 
 
 def generate_epic():
-    res = {
-        'Лунный свет х': random.randint(-2, 1),
-        'Солнечный свет х': random.randint(-2, 2),
-        'Кровь виверны х': random.randint(-1, 1),
-        'Кристалльная кровь х': random.randint(-2, 2),
-        'Вода из волшебного колодца х': random.randint(-4, 2),
-        'Сок живого дерева х': random.randint(-3, 2),
-        'СтРаННый ГРиБ х': random.randint(-2, 2),
-        'Чёрная роза х': random.randint(-1, 3)
-    }
+
+    done = False
+    while not done:
+
+        res = {
+            'Лунный свет х': random.randint(-2, 1),
+            'Солнечный свет х': random.randint(-2, 2),
+            'Кровь виверны х': random.randint(-1, 1),
+            'Кристалльная кровь х': random.randint(-2, 2),
+            'Вода из волшебного колодца х': random.randint(-4, 2),
+            'Сок живого дерева х': random.randint(-3, 2),
+            'СтРаННый ГРиБ х': random.randint(-2, 2),
+            'Чёрная роза х': random.randint(-1, 3)
+        }
+
+    for i in res.keys():
+        if res[i] > 0:
+            done = True
+            break
+
     return res
 
 

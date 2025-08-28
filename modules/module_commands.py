@@ -31,7 +31,7 @@ def Func_Counter(text, chat_id, vk_session, replied_text=""):
     if replied_text != "":
         spacebar = text.find(' ')
         if spacebar > -1:
-            respond = module_util.count(replied_text, text[spacebar + 1:].lower())
+            respond = module_util.count(replied_text, text[spacebar + 1:])
             module_send.send(respond, chat_id, vk_session)
 
 
@@ -53,12 +53,12 @@ def HeavyFunc_Random(text, chat_id, vk_session, replied_text=""):
         e1 = edge[0]
         e2 = edge[1]
         e3 = edge[2]
-        if e1 > 500:
-            e1 = 500
-        if e2 > 500:
-            e2 = 500
-        if e3 > 500:
-            e3 = 500
+        if e1 > 250:
+            e1 = 250
+        if e2 > 1000:
+            e2 = 1000
+        if e3 > 1000:
+            e3 = 1000
         temp = random.randint(e2, e3)
         n_sum = temp
         num_list = str(temp)
@@ -99,26 +99,6 @@ def Func_shop(name, chat_id, session, replied_text=""):
         image = 'photo-172386457_' + image
         module_send.send_attachment(shop, chat_id, image, session)
 
-def HeavyFunc_randomSort(text, chat_id, session, replied_text=""):
-    checking = text.split(' ')
-    edge = list(map(int, re.findall(r'\d+', text)))
-    if (len(edge) == 2) and (len(checking) == 3):
-        e1 = edge[0]
-        e2 = edge[1]
-        num_list = []
-        for i in range(e1, e2+1):
-            num_list.append(i)
-
-        random.shuffle(num_list)
-        out_list = str(num_list[0])
-
-        for x in range(1, len(num_list)):
-            out_list += ", " + str(num_list[x])
-
-        module_send.send(
-            'Случайный порядок диапазона [' + str(e1) + '...' + str(e2) +
-            '] определён так: ' + out_list, chat_id, session)
-
 
 commands = {
     'ква': Func_Kva,
@@ -129,7 +109,6 @@ commands = {
     'счёт': Func_Counter,
     'счет': Func_Counter,
     'правила': Func_rules,
-    'магазин': Func_shop,
-    'порядок': HeavyFunc_randomSort
+    'магазин': Func_shop
 }
 
