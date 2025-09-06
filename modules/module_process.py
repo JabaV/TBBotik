@@ -151,11 +151,10 @@ def generate_epic():
             'Чёрная роза х': random.randint(-1, 3)
         }
 
-    for i in res.keys():
-        if res[i] > 0:
-            done = True
-            break
-
+        for i in res.keys():
+            if res[i] > 0:
+                done = True
+                break
     return res
 
 

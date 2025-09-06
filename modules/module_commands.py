@@ -31,7 +31,10 @@ def Func_Counter(text, chat_id, vk_session, replied_text=""):
     if replied_text != "":
         spacebar = text.find(' ')
         if spacebar > -1:
-            respond = module_util.count(replied_text, text[spacebar + 1:])
+            pattern = text[spacebar + 1:]
+            if pattern.isnumeric():
+                pattern = f' {pattern} '
+            respond = module_util.count(replied_text, pattern)
             module_send.send(respond, chat_id, vk_session)
 
 
