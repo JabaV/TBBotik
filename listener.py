@@ -4,12 +4,18 @@ from modules import module_handler
 from modules import module_logger
 from time import sleep
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
+import os
 
-data = open("data", "r")
-print("File opened")
-contents = data.readlines()
-data.close()
-print("Closed")
+if os.path.exists('data'):
+    data = open("data", "r")
+    print("File opened")
+    contents = data.readlines()
+    data.close()
+else:
+    data = open('../data', 'r')
+    print('Opened outside working folder')
+    contents = data.readlines()
+    data.close()
 
 secter = contents[0].strip('\n')
 another = contents[1].strip('\n')

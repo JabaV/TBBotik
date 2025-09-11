@@ -1,62 +1,36 @@
 import random
+from modules.module_util import get_res
 
 
 def generate_resources(difficulty):
-    resource = ''
+    accel = 0
+    mult = 0
+    r_max = 2
     match difficulty:
         case 'бой':
-            resource = generate_fight()
+            # resource = generate_fight()
+            mult = 1
         case 'босс':
-            resource = generate_boss()
+            # resource = generate_boss()
+            accel = 1
+            mult = 1.5
+            r_max = 4
         case 'финал':
-            resource = generate_final()
-    if resource != '':
-        return resource
-    else:
-        return 'Ошибка в написании сложности'
+            # resource = generate_final()
+            accel = 2
+            mult = 2
+            r_max = 5
+        case _:
+            return 'Ошибка в написании сложности'
 
+    rars, lowers, highers = get_res()
+    res = {}
+    for i in rars.keys():
+        if rars[i] <= r_max:
+            res[i] = random.randint(lowers[i] + accel, round(highers[i] * mult, 0))
+            if res[i] == 0:
+                res.pop(i)
 
-def generate_fight():
-    res = {
-        'Ткань х': random.randint(0, 2),
-        'Железо х': random.randint(0, 2),
-        'Дерево х': random.randint(0, 3),
-        'Кожа Хиджакуры х': random.randint(0, 2),
-        'Кварц х': random.randint(0, 2),
-        'Медь х': random.randint(0, 2),
-        'Пламенный кристалл х': random.randint(-2, 1),
-        'Бальдар х': random.randint(-1, 1),
-        'Рубинит х': random.randint(-1, 1)
-    }
-    return res
-
-
-def generate_boss():
-    res = {
-        'Ткань х': random.randint(1, 5),
-        'Железо х': random.randint(1, 4),
-        'Дерево х': random.randint(1, 6),
-        'Пламенный кристалл х': random.randint(-1, 2),
-        'Йельский патник х': random.randint(0, 2),
-        'Дозер х': random.randint(0, 2),
-        'Итодол х': random.randint(0, 3),
-        'Ланк х': random.randint(0, 2),
-        'Тёмная частица x': random.randint(0, 1),
-        'Рунный камень х': random.randint(-1, 1)
-    }
-    return res
-
-
-def generate_final():
-    res = {
-        'Пламенный кристалл х': random.randint(1, 3),
-        'Йельский патник х': random.randint(1, 3),
-        'Итодол х': random.randint(1, 3),
-        'Ланк х': random.randint(1, 4),
-        'Аделит x': random.randint(1, 2),
-        'Рунный камень х': random.randint(0, 2),
-        'Тёмная сталь х': random.randint(-1, 1)
-    }
     return res
 
 

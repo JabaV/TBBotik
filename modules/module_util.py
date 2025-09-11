@@ -28,6 +28,25 @@ def readrules(line):
     return respond
 
 
+def get_res():
+
+    rars = {}
+    lowers = {}
+    highers = {}
+
+    with open('Files/Resources.txt', 'r', encoding='utf-8') as reses:
+        while string := reses.readline():
+            if string.startswith('# '):
+                continue
+            string = string.removesuffix('\n')
+            parts = string.split(';')
+
+            rars[parts[0]] = int(parts[1])
+            lowers[parts[0]] = int(parts[2])
+            highers[parts[0]] = int(parts[3])
+    return rars, lowers, highers
+
+
 def getrule(param):
     respond = ''
     param = param.lower()
